@@ -1,0 +1,388 @@
+                        		TITL	"6800/6801 Cross-Assembler Test Source File"
+                        		PAGE	60
+6800/6801 Cross-Assembler Test Source File
+
+                        ;
+                        ; The 6801 opcodes in opcode numerical order:
+                        ;
+                        		CPU	6801
+                        
+   0000                 IMMEDIATE	EQU	0
+   0001                 OFFSET	EQU	1
+                        
+   0002                 DIRECT	ORG	2
+                        
+   0100                 EXTENDED	ORG	$100
+                        
+                        ; $00 - $0F.
+                        						; $00 is undefined.
+   0100   01            		NOP
+                        						; $02 - $03 are undefined.
+   0101   04            		LSRD
+   0102   05            		ASLD
+   0103   06            		TAP
+   0104   07            		TPA
+   0105   08            		INX
+   0106   09            		DEX
+   0107   0a            		CLV
+   0108   0b            		SEV
+   0109   0c            		CLC
+   010a   0d            		SEC
+   010b   0e            		CLI
+   010c   0f            		SEI
+                        ; $10 - $1F.
+   010d   10            		SBA
+   010e   11            		CBA
+                        						; $12 - $15 are undefined.
+   010f   16            		TAB
+   0110   17            		TBA
+                        						; $18 is undefined.
+   0111   19            		DAA
+                        						; $1A is undefined.
+   0112   1b            		ABA
+                        						; $1B - $1F are undefined.
+                        ; $20 - $2F.
+   0113   20 00         		BRA	* + 2
+   0115   21 00         		BRN	* + 2
+   0117   22 00         		BHI	* + 2
+   0119   23 00         		BLS	* + 2
+   011b   24 00         		BCC	* + 2
+   011d   25 00         		BCS	* + 2
+   011f   26 00         		BNE	* + 2
+   0121   27 00         		BEQ	* + 2
+   0123   28 00         		BVC	* + 2
+   0125   29 00         		BVS	* + 2
+   0127   2a 00         		BPL	* + 2
+   0129   2b 00         		BMI	* + 2
+   012b   2c 00         		BGE	* + 2
+   012d   2d 00         		BLT	* + 2
+   012f   2e 00         		BGT	* + 2
+   0131   2f 00         		BLE	* + 2
+                        ; $30 - $3F.
+   0133   30            		TSX
+6800/6801 Cross-Assembler Test Source File
+
+   0134   31            		INS
+   0135   32            		PULA
+   0136   33            		PULB
+   0137   34            		DES
+   0138   35            		TXS
+   0139   36            		PSHA
+   013a   37            		PSHB
+   013b   38            		PULX
+   013c   39            		RTS
+   013d   3a            		ABX
+   013e   3b            		RTI
+   013f   3c            		PSHX
+   0140   3d            		MUL
+   0141   3e            		WAI
+   0142   3f            		SWI
+                        ; $40 - $4F.
+   0143   40            		NEGA
+                        						; $41 - $42 are undefined.
+   0144   43            		COMA
+   0145   44            		LSRA
+                        						; $45 is undefined.
+   0146   46            		RORA
+   0147   47            		ASRA
+   0148   48            		ASLA
+   0149   49            		ROLA
+   014a   4a            		DECA
+                        						; $4B is undefined.
+   014b   4c            		INCA
+   014c   4d            		TSTA
+                        						; $5E is undefined.
+   014d   4f            		CLRA
+                        ; $50 - $5F.
+   014e   50            		NEGB
+                        						; $51 - $52 are undefined.
+   014f   53            		COMB
+   0150   54            		LSRB
+                        						; $55 is undefined.
+   0151   56            		RORB
+   0152   57            		ASRB
+   0153   58            		ASLB
+   0154   59            		ROLB
+   0155   5a            		DECB
+                        						; $5B is undefined.
+   0156   5c            		INCB
+   0157   5d            		TSTB
+                        						; $5E is undefined.
+   0158   5f            		CLRB
+                        ; $60 - $6F.
+   0159   60 01         		NEG	X, OFFSET
+                        						; $61 - $62 are undefined.
+   015b   63 01         		COM	X, OFFSET
+   015d   64 01         		LSR	X, OFFSET
+                        						; $65 is undefined.
+   015f   66 01         		ROR	X, OFFSET
+   0161   67 01         		ASR	X, OFFSET
+   0163   68 01         		ASL	X, OFFSET
+   0165   69 01         		ROL	X, OFFSET
+   0167   6a 01         		DEC	X, OFFSET
+6800/6801 Cross-Assembler Test Source File
+
+                        						; $6B is undefined.
+   0169   6c 01         		INC	X, OFFSET
+   016b   6d 01         		TST	X, OFFSET
+   016d   6e 01         		JMP	X, OFFSET
+   016f   6f 01         		CLR	X, OFFSET
+                        ; $70 - $7F.
+   0171   70 01 00      		NEG	EXTENDED
+                        						; $71 - $72 are undefined.
+   0174   73 01 00      		COM	EXTENDED
+   0177   74 01 00      		LSR	EXTENDED
+                        						; $75 is undefined.
+   017a   76 01 00      		ROR	EXTENDED
+   017d   77 01 00      		ASR	EXTENDED
+   0180   78 01 00      		ASL	EXTENDED
+   0183   79 01 00      		ROL	EXTENDED
+   0186   7a 01 00      		DEC	EXTENDED
+                        						; $7B is undefined.
+   0189   7c 01 00      		INC	EXTENDED
+   018c   7d 01 00      		TST	EXTENDED
+   018f   7e 01 00      		JMP	EXTENDED
+   0192   7f 01 00      		CLR	EXTENDED
+                        ; $80 - $8F.
+                        ; note the operand is a byte-value not word-value.
+                        
+   0195   80 00         		SUBA	#IMMEDIATE
+   0197   81 00         		CMPA	#IMMEDIATE
+   0199   82 00         		SBCA	#IMMEDIATE
+   019b   83 00 00      		SUBD	#IMMEDIATE
+   019e   84 00         		ANDA	#IMMEDIATE
+   01a0   85 00         		BITA	#IMMEDIATE
+   01a2   86 00         		LDAA	#IMMEDIATE
+                        						; $87 is undefined.
+   01a4   88 00         		EORA	#IMMEDIATE
+   01a6   89 00         		ADCA	#IMMEDIATE
+   01a8   8a 00         		ORAA	#IMMEDIATE
+   01aa   8b 00         		ADDA	#IMMEDIATE
+   01ac   8c 00 00      		CPX	#IMMEDIATE
+   01af   8d 00         		BSR	* + 2
+   01b1   8e 00 00      		LDS	#IMMEDIATE
+                        						; $8F is undefined.
+                        ; $90 - $9F.
+   01b4   90 02         		SUBA	DIRECT
+   01b6   91 02         		CMPA	DIRECT
+   01b8   92 02         		SBCA	DIRECT
+   01ba   93 02         		SUBD	DIRECT
+   01bc   94 02         		ANDA	DIRECT
+   01be   95 02         		BITA	DIRECT
+   01c0   96 02         		LDAA	DIRECT
+   01c2   97 02         		STAA	DIRECT
+   01c4   98 02         		EORA	DIRECT
+   01c6   99 02         		ADCA	DIRECT
+   01c8   9a 02         		ORAA	DIRECT
+   01ca   9b 02         		ADDA	DIRECT
+   01cc   9c 02         		CPX	DIRECT
+   01ce   9d 02         		JSR	DIRECT
+   01d0   9e 02         		LDS	DIRECT
+   01d2   9f 02         		STS	DIRECT
+                        ; $A0 - $AF.
+6800/6801 Cross-Assembler Test Source File
+
+   01d4   a0 01         		SUBA	X, OFFSET
+   01d6   a1 01         		CMPA	X, OFFSET
+   01d8   a2 01         		SBCA	X, OFFSET
+   01da   a3 01         		SUBD	X, OFFSET
+   01dc   a4 01         		ANDA	X, OFFSET
+   01de   a5 01         		BITA	X, OFFSET
+   01e0   a6 01         		LDAA	X, OFFSET
+   01e2   a7 01         		STAA	X, OFFSET
+   01e4   a8 01         		EORA	X, OFFSET
+   01e6   a9 01         		ADCA	X, OFFSET
+   01e8   aa 01         		ORAA	X, OFFSET
+   01ea   ab 01         		ADDA	X, OFFSET
+   01ec   ac 01         		CPX	X, OFFSET
+   01ee   ad 01         		JSR	X, OFFSET
+   01f0   ae 01         		LDS	X, OFFSET
+   01f2   af 01         		STS	X, OFFSET
+                        ; $B0 - $BF.
+   01f4   b0 01 00      		SUBA	EXTENDED
+   01f7   b1 01 00      		CMPA	EXTENDED
+   01fa   b2 01 00      		SBCA	EXTENDED
+   01fd   b3 01 00      		SUBD	EXTENDED
+   0200   b4 01 00      		ANDA	EXTENDED
+   0203   b5 01 00      		BITA	EXTENDED
+   0206   b6 01 00      		LDAA	EXTENDED
+   0209   b7 01 00      		STAA	EXTENDED
+   020c   b8 01 00      		EORA	EXTENDED
+   020f   b9 01 00      		ADCA	EXTENDED
+   0212   ba 01 00      		ORAA	EXTENDED
+   0215   bb 01 00      		ADDA	EXTENDED
+   0218   bc 01 00      		CPX	EXTENDED
+   021b   bd 01 00      		JSR	EXTENDED
+   021e   be 01 00      		LDS	EXTENDED
+   0221   bf 01 00      		STS	EXTENDED
+                        ; $C0 - $CF.
+   0224   c0 00         		SUBB	#IMMEDIATE
+   0226   c1 00         		CMPB	#IMMEDIATE
+   0228   c2 00         		SBCB	#IMMEDIATE
+   022a   c3 00 00      		ADDD	#IMMEDIATE
+   022d   c4 00         		ANDB	#IMMEDIATE
+   022f   c5 00         		BITB	#IMMEDIATE
+   0231   c6 00         		LDAB	#IMMEDIATE
+                        						; $C7 is undefined.
+   0233   c8 00         		EORB	#IMMEDIATE
+   0235   c9 00         		ADCB	#IMMEDIATE
+   0237   ca 00         		ORAB	#IMMEDIATE
+   0239   cb 00         		ADDB	#IMMEDIATE
+   023b   cc 00 00      		LDD	#IMMEDIATE
+                        						; $CD is undefined.
+   023e   ce 00 00      		LDX	#IMMEDIATE
+                        						; $CF is undefined.
+                        ; $D0 - $DF.
+   0241   d0 02         		SUBB	DIRECT
+   0243   d1 02         		CMPB	DIRECT
+   0245   d2 02         		SBCB	DIRECT
+   0247   d3 02         		ADDD	DIRECT
+   0249   d4 02         		ANDB	DIRECT
+   024b   d5 02         		BITB	DIRECT
+   024d   d6 02         		LDAB	DIRECT
+6800/6801 Cross-Assembler Test Source File
+
+   024f   d7 02         		STAB	DIRECT
+   0251   d8 02         		EORB	DIRECT
+   0253   d9 02         		ADCB	DIRECT
+   0255   da 02         		ORAB	DIRECT
+   0257   db 02         		ADDB	DIRECT
+   0259   dc 02         		LDD	DIRECT
+   025b   dd 02         		STD	DIRECT
+   025d   de 02         		LDX	DIRECT
+   025f   df 02         		STX	DIRECT
+                        ; $E0 - $EF.
+   0261   e0 01         		SUBB	X, OFFSET
+   0263   e1 01         		CMPB	X, OFFSET
+   0265   e2 01         		SBCB	X, OFFSET
+   0267   e3 01         		ADDD	X, OFFSET
+   0269   e4 01         		ANDB	X, OFFSET
+   026b   e5 01         		BITB	X, OFFSET
+   026d   e6 01         		LDAB	X, OFFSET
+   026f   e7 01         		STAB	X, OFFSET
+   0271   e8 01         		EORB	X, OFFSET
+   0273   e9 01         		ADCB	X, OFFSET
+   0275   ea 01         		ORAB	X, OFFSET
+   0277   eb 01         		ADDB	X, OFFSET
+   0279   ec 01         		LDD	X, OFFSET
+   027b   ed 01         		STD	X, OFFSET
+   027d   ee 01         		LDX	X, OFFSET
+   027f   ef 01         		STX	X, OFFSET
+                        ; $F0 - $FF.
+   0281   f0 01 00      		SUBB	EXTENDED
+   0284   f1 01 00      		CMPB	EXTENDED
+   0287   f2 01 00      		SBCB	EXTENDED
+   028a   f3 01 00      		ADDD	EXTENDED
+   028d   f4 01 00      		ANDB	EXTENDED
+   0290   f5 01 00      		BITB	EXTENDED
+   0293   f6 01 00      		LDAB	EXTENDED
+   0296   f7 01 00      		STAB	EXTENDED
+   0299   f8 01 00      		EORB	EXTENDED
+   029c   f9 01 00      		ADCB	EXTENDED
+   029f   fa 01 00      		ORAB	EXTENDED
+   02a2   fb 01 00      		ADDB	EXTENDED
+   02a5   fc 01 00      		LDD	EXTENDED
+   02a8   fd 01 00      		STD	EXTENDED
+   02ab   fe 01 00      		LDX	EXTENDED
+   02ae   ff 01 00      		STX	EXTENDED
+                        ;
+                        ; old Motorola opcodes which seperated A/B from mnemonic
+                        ;
+   02b1   9b 01                     ADD A,1			
+   02b3   4a            		 DEC A 
+   02b4   36            		 PSH A  		
+   02b5   94 01                     AND A,1  		
+   02b7   4c            		INC A
+   02b8   32              		PUL A	
+   02b9   48                        ASL A
+   02ba   96 01           		LDA A,1
+   02bc   92 01           		SBC A,1
+   02be   4f                          CLR A
+   02bf   44              		LSR A	
+   02c0   97 01         		STA A,1  
+6800/6801 Cross-Assembler Test Source File
+
+   02c2   91 01                     CMP A,1
+   02c4   9a 01           		ORA A,1 
+   02c6   90 01          		SUB A,1 
+                        
+                        ;
+                        ; extended vs. immediate as chosen by the assembler
+                        ; (Motorola assembler considers the operand and chooses the opcode to fit)
+V  02c8   8b 23         		ADDA #0123H	;extended
+   02ca   8b 32         		ADDA #32H		;immed
+   02cc   bb 01 23      		ADDA 0123H		;extended
+   02cf   9b 32         		ADDA 32H		;immed
+   02d1   bb ff ff      		ADDA -1		;testing range of immediate -127D to 255D
+   02d4   9b ff         		ADDA low -1	;force to byte size
+   02d6   bb ff 81      		ADDA -127
+   02d9   bb ff 80      		ADDA -128
+   02dc   bb ff 7f      		ADDA -129
+   02df   9b fe         		ADDA 254
+   02e1   9b ff         		ADDA 255
+   02e3   bb 01 00      		ADDA 256
+                        
+                        ;
+                        ; Let's test the rest of the pseudo-ops while we're at it:
+                        ;
+   ffff                 VARIABLE	SET	-1
+                        
+   ffff                 		IF	VARIABLE
+   02e6   ff 00 01      		FCB	-1, , +1
+                        		ELSE
+                        		FCB	+1, , -1
+                        		ENDI
+                        
+   0000                 VARIABLE	SET	VARIABLE EQ 0
+                        
+   0000                 		IF	VARIABLE
+                        		FDB	, +1
+                        		ELSE
+   02e9   00 00 ff ff   		FDB	, -1
+                        		ENDI
+                        ;
+                        ;numeric & string constants
+                        ;
+   02ed   10            		FCB	10H	;hex, 16 decimal
+   02ee   08            		FCB	10O	;octal, 8 decimal
+   02ef   02            		FCB	10B	;binary, 2 decimal
+   02f0   0a            		FCB	10D	;decimal, 10 decimal
+   02f1   00 0a         		FDB	10D	;word representation
+                        
+   02f3   45 58 50 4c   		FCC	"EXPLOSION"
+   02f7   4f 53 49 4f   
+   02fb   4e            
+                        
+   00ff                 AAA		EQU	255	;hex FF
+   00c3                 BBB		EQU	%11000011 ;hex C3
+   000f                 CCC		EQU	@017	;hex 0F
+   00ff                 DDD		EQU	$0ff	;hex FF
+   0004                 EEE		EQU	2*2
+                        
+   00f5                 FFF		EQU not 10D	;NOT byte vs word evaluation
+6800/6801 Cross-Assembler Test Source File
+
+   dcef                 GGG		EQU not 2310H
+                        
+                        ;
+                        ;labels
+                        ;
+   02fc   01            BANANA	NOP
+   02fd   01            band:		NOP	;lable defined as "band" not "band:"
+   02fe   20 fd         		BRA	band
+U  0300   01 01         		BRA	BAND ;upper/lowercase NOT the same, error
+                        
+                        ; this is a comment
+                        * is this a comment?
+                           ; this is a comment
+S  0302   01 01 01         * this is not a comment (could be an expression)
+                        
+                        
+   0305                 		END
+6800/6801 Cross-Assembler Test Source File
+
+00ff  AAA           02fc  BANANA        00c3  BBB           000f  CCC       
+00ff  DDD           0002  DIRECT        0004  EEE           0100  EXTENDED  
+00f5  FFF           dcef  GGG           0000  IMMEDIATE     0001  OFFSET    
+0000  VARIABLE      02fd  band          
+

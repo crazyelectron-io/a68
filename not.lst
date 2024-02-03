@@ -1,0 +1,42 @@
+   0100                 	org  0100h
+   00fc                 cmsk	equ  11111100B
+   00cf                 pmsk	equ  11001111B
+   00f3                 rmsk equ  11110011B
+   000c                 rrrr equ  not rmsk
+   0030                 pppp equ  not pmsk
+   0001                 ttyda equ 01H
+   0040                 crtda equ 40H
+                        
+   1234                 aaa	equ	1234H
+   edcb                 bbb	equ	not 1234H
+                        
+   0100   01            	fcb  01H
+   0101   fe            	fcb  not 01H
+   0102   03            	fcb  not cmsk
+   0103   00 0c         	fdb  not rmsk
+                         
+   0105   90 0d         	suba 0DH
+   0107   b0 12 34      	suba 1234H
+   010a   90 f2         	suba not 0DH
+   010c   b0 ed cb      	suba not 1234H
+                        
+   010f   80 fc         	suba #cmsk
+   0111   80 cf         	suba #pmsk
+   0113   80 30         	suba #(not pmsk)
+   0115   80 03         	suba # low (not cmsk)
+   0117   80 03         	suba #(not 0FCH)
+   0119   80 30         	suba #(not 0CFH)
+   011b   80 c0         	suba #0C0H
+   011d   80 0f         	suba #0FH
+   011f   80 f0         	suba #(not 0FH)
+   0121   80 40         	suba #crtda
+   0123   80 bf         	suba #(not crtda)
+   0125   80 f3         	suba #rmsk
+   0127   80 0c         	suba #(not rmsk)
+                        
+                        
+   0129                 	end
+1234  aaa           edcb  bbb           00fc  cmsk          0040  crtda     
+00cf  pmsk          0030  pppp          00f3  rmsk          000c  rrrr      
+0001  ttyda         
+

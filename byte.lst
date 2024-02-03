@@ -1,0 +1,31 @@
+   0100                 		ORG 0100H
+                        ;
+                        ; extended vs. immediate as chosen by the assembler
+                        ; (Motorola assembler considers the operand and chooses the opcode to fit)
+V  0100   8b 23         		ADDA #0123H	;extended
+   0102   8b 32         		ADDA #32H		;immed
+                        
+   0104   8b 81         		ADDA #-127		;range of immediate test
+   0106   8b 80         		ADDA #-128
+V  0108   8b 7f         		ADDA #-129
+   010a   8b fe         		ADDA #254
+   010c   8b ff         		ADDA #255
+V  010e   8b 00         		ADDA #256
+                        
+                        
+   0110   bb 01 23      		ADDA 0123H		;extended
+   0113   9b 32         		ADDA 32H		;immed
+   0115   bb ff ff      		ADDA -1		;testing range of immediate -127D to 255D
+   0118   9b ff         		ADDA low -1	;force to byte size
+   011a   bb ff 81      		ADDA -127
+   011d   bb ff 80      		ADDA -128
+   0120   bb ff 7f      		ADDA -129
+   0123   9b 81         		ADDA low -127
+   0125   9b 80         		ADDA low -128
+   0127   9b 7f         		ADDA low -129
+   0129   9b fe         		ADDA 254
+   012b   9b ff         		ADDA 255
+   012d   bb 01 00      		ADDA 256
+                        
+   0130                 		END
+
